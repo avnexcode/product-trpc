@@ -10,7 +10,7 @@ import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { updateCategoryFormSchema } from "../schemas";
-import type { UpdateCategoryFormSchema } from "../tables";
+import type { UpdateCategoryFormSchema } from "../types";
 import { EditCategoryFormInner } from "./EditCategoryFormInner";
 import { EditCategoryFormSkeleton } from "../components/skeleton";
 

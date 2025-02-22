@@ -6,7 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2 } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { createCategoryFormSchema } from "../schemas";
-import type { CreateCategoryFormSchema } from "../tables";
+import type { CreateCategoryFormSchema } from "../types";
 import { CreateCategoryFormInner } from "./CreateCategoryFormInner";
 import { api } from "@/trpc/client";
 import { toast } from "sonner";

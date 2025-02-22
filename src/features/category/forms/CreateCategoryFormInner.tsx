@@ -1,5 +1,5 @@
 import { useFormContext } from "react-hook-form";
-import type { CreateCategoryFormSchema } from "../tables";
+import type { CreateCategoryFormSchema } from "../types";
 import {
   FormControl,
   FormField,

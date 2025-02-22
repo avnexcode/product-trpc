@@ -1,1 +1,4 @@
-export { ProductPage as default } from "@/features/product/pages";
+export {
+  ProductPage as default,
+  ProductPageMetadata as metadata,
+} from "@/features/product/pages";

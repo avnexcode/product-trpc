@@ -13,8 +13,8 @@ export const DashboardProductSection = ({
   return (
     <section>
       <header className="flex items-center gap-5">
-        <NavigationLink label="category" href="/dashboard/category" />
         <NavigationLink label="product" href="/dashboard/product" />
+        <NavigationLink label="category" href="/dashboard/category" />
       </header>
       <main className={cn("mt-5", className)}>{children}</main>
     </section>

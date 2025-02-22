@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { DashboardProductSection } from "@/features/dashboard/layouts/DashboardProductSection";
 import { CirclePlus } from "lucide-react";
 import Link from "next/link";
-import { CategoryTable } from "../tables/CategoryTable";
+import { CategoryTable } from "../tables";
 import type { Metadata } from "next";
 
 export const CategoryPageMetadata: Metadata = {

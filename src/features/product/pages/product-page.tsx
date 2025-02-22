@@ -4,6 +4,15 @@ import {
   SectionContainer,
 } from "@/components/layouts";
 import { DashboardProductSection } from "@/features/dashboard/layouts/DashboardProductSection";
+import { ProductTable } from "../tables";
+import { type Metadata } from "next";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { CirclePlus } from "lucide-react";
+
+export const ProductPageMetadata: Metadata = {
+  title: "Dashboard - Product",
+};
 
 export const ProductPage = () => {
   return (
@@ -13,7 +22,17 @@ export const ProductPage = () => {
           title="Dashboard - Product"
           description="Manage your products data"
         >
-          <DashboardProductSection>Hello Product</DashboardProductSection>
+          <DashboardProductSection>
+            <header className="py-4">
+              <Link href={"/dashboard/product/create"}>
+                <Button>
+                  <CirclePlus />
+                  Add Product
+                </Button>
+              </Link>
+            </header>
+            <ProductTable />
+          </DashboardProductSection>
         </DashboardSection>
       </SectionContainer>
     </PageContainer>
