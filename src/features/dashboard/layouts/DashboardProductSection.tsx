@@ -1,0 +1,22 @@
+import { cn } from "@/lib/utils";
+import { NavigationLink } from "../components/navbar";
+
+type DashboardProductSectionProps = {
+  children: React.ReactNode;
+  className?: string;
+};
+
+export const DashboardProductSection = ({
+  children,
+  className,
+}: DashboardProductSectionProps) => {
+  return (
+    <section>
+      <header className="flex items-center gap-5">
+        <NavigationLink label="category" href="/dashboard/category" />
+        <NavigationLink label="product" href="/dashboard/product" />
+      </header>
+      <main className={cn("mt-5", className)}>{children}</main>
+    </section>
+  );
+};
