@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-export const createProductFormSchema = z.object({
+export const createProductRequest = z.object({
   name: z.string().min(1).max(150),
   price: z.string().min(1).max(50),
   image: z.string().optional(),
@@ -8,4 +8,6 @@ export const createProductFormSchema = z.object({
   category_id: z.string().min(1),
 });
 
-export const updateProductFormSchema = createProductFormSchema;
+export const updateProductRequest = createProductRequest.partial().extend({
+  id: z.string().min(1),
+});

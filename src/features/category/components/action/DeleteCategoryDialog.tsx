@@ -28,6 +28,9 @@ export const DeleteCategoryDialog = ({
       toast.success("Delete category successfully");
       refetchCategories();
     },
+    onError: (error) => {
+      toast.error(error.message ?? "Failed to delete category");
+    },
   });
 
   const handleDeleteCategory = () => deleteCategory({ id: categoryId });

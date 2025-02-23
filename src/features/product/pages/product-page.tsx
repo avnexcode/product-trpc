@@ -3,12 +3,12 @@ import {
   PageContainer,
   SectionContainer,
 } from "@/components/layouts";
-import { DashboardProductSection } from "@/features/dashboard/layouts/DashboardProductSection";
-import { ProductTable } from "../tables";
+import { Button } from "@/components/ui/button";
+import { DashboardProductSection } from "@/features/dashboard/layouts";
+import { CirclePlus } from "lucide-react";
 import { type Metadata } from "next";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { CirclePlus } from "lucide-react";
+import { ProductTable } from "../tables";
 
 export const ProductPageMetadata: Metadata = {
   title: "Dashboard - Product",

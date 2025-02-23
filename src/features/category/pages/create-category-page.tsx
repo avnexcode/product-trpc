@@ -3,8 +3,8 @@ import {
   PageContainer,
   SectionContainer,
 } from "@/components/layouts";
-import { CreateCategoryForm } from "../forms";
 import type { Metadata } from "next";
+import { CreateCategoryForm } from "../forms";
 
 export const CreateCategoryPageMetadata: Metadata = {
   title: "Dashboard | Create Category",

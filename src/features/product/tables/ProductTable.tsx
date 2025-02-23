@@ -15,28 +15,14 @@ import Link from "next/link";
 import { DeleteProductDialog } from "../components/action";
 import { ProductTableBodySkeleton } from "../components/skeleton";
 import { convertCurrency } from "@/utils";
+import { api } from "@/trpc/client";
 
 export const ProductTable = () => {
-  const products = [
-    {
-      id: "1",
-      name: "Produk 1",
-      price: "1000",
-      category: {
-        name: "food",
-      },
-    },
-    {
-      id: "2",
-      name: "Produk 2",
-      price: "2000",
-      category: {
-        name: "drink",
-      },
-    },
-  ];
-  const isProductsLoading = false;
-  const refetchProducts = () => console.log("AW");
+  const {
+    data: products,
+    isLoading: isProductsLoading,
+    refetch: refetchProducts,
+  } = api.product.getAll.useQuery();
   return (
     <Table>
       <TableCaption>A list of your recent categories.</TableCaption>

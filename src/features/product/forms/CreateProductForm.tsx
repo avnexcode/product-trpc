@@ -2,21 +2,24 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Form } from "@/components/ui/form";
+import { api } from "@/trpc/client";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 import { createProductFormSchema } from "../schemas";
 import type { CreateProductFormSchema } from "../types";
 import { CreateProductFormInner } from "./CreateProductFormInner";
 
 export const CreateProductForm = () => {
   const router = useRouter();
+  const utils = api.useUtils();
 
   const form = useForm<CreateProductFormSchema>({
     defaultValues: {
       name: "",
-      image: "",
+      image: "https://placehold.co/600x400",
       price: "",
       description: "",
       category_id: "",
@@ -24,9 +27,20 @@ export const CreateProductForm = () => {
     resolver: zodResolver(createProductFormSchema),
   });
 
-  const onSubmit = (values: CreateProductFormSchema) => console.log(values);
+  const { mutate: createProduct, isPending: isCreateProductPending } =
+    api.product.create.useMutation({
+      onSuccess: () => {
+        void utils.product.getAll.invalidate();
+        toast.success("Create product successfully");
+        router.replace("/dashboard/product");
+      },
+      onError: (error) => {
+        toast.error(error.message ?? "Failed to create product");
+      },
+    });
 
-  const isCreateProductPending = false;
+  const onSubmit = (values: CreateProductFormSchema) => createProduct(values);
+
   return (
     <Card className="border-none shadow-none">
       <CardContent>

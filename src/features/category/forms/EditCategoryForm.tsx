@@ -9,10 +9,10 @@ import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
+import { EditCategoryFormSkeleton } from "../components/skeleton";
 import { updateCategoryFormSchema } from "../schemas";
 import type { UpdateCategoryFormSchema } from "../types";
 import { EditCategoryFormInner } from "./EditCategoryFormInner";
-import { EditCategoryFormSkeleton } from "../components/skeleton";
 
 type EditCategoryFormProps = {
   categoryId: string;
@@ -21,6 +21,7 @@ type EditCategoryFormProps = {
 export const EditCategoryForm = ({ categoryId }: EditCategoryFormProps) => {
   const router = useRouter();
   const utils = api.useUtils();
+
   const form = useForm<UpdateCategoryFormSchema>({
     defaultValues: {
       name: "",
@@ -34,23 +35,26 @@ export const EditCategoryForm = ({ categoryId }: EditCategoryFormProps) => {
       { enabled: !!categoryId },
     );
 
-  const { mutate: updateCategory, isPending: isUpdateCategoryPending } =
-    api.category.update.useMutation({
-      onSuccess: () => {
-        toast.success("Update category successfully");
-        void utils.category.getAll.invalidate();
-        void void router.push("/dashboard/category");
-      },
-    });
-
-  const onSubmit = (values: UpdateCategoryFormSchema) =>
-    updateCategory({ ...values, id: categoryId });
-
   useEffect(() => {
     if (category) {
       form.reset({ name: category.name });
     }
   }, [category, form]);
+
+  const { mutate: updateCategory, isPending: isUpdateCategoryPending } =
+    api.category.update.useMutation({
+      onSuccess: () => {
+        void utils.category.getAll.invalidate();
+        toast.success("Update category successfully");
+        router.replace("/dashboard/category");
+      },
+      onError: (error) => {
+        toast.error(error.message ?? "Failed to edit category");
+      },
+    });
+
+  const onSubmit = (values: UpdateCategoryFormSchema) =>
+    updateCategory({ ...values, id: categoryId });
 
   if (isCategoryLoading) {
     return <EditCategoryFormSkeleton />;

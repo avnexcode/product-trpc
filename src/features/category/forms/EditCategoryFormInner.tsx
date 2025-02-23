@@ -1,5 +1,3 @@
-import { useFormContext } from "react-hook-form";
-import type { UpdateCategoryFormSchema } from "../types";
 import {
   FormControl,
   FormField,
@@ -8,6 +6,8 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { useFormContext } from "react-hook-form";
+import type { UpdateCategoryFormSchema } from "../types";
 
 type EditCategoryFormInnerProps = {
   formId: string;

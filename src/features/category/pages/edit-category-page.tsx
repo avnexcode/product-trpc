@@ -3,8 +3,8 @@ import {
   PageContainer,
   SectionContainer,
 } from "@/components/layouts";
-import { EditCategoryForm } from "../forms";
 import type { Metadata } from "next";
+import { EditCategoryForm } from "../forms";
 
 export const EditCategoryPageMetadata: Metadata = {
   title: "Dashboard | Edit Category",

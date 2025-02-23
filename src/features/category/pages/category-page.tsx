@@ -4,11 +4,11 @@ import {
   SectionContainer,
 } from "@/components/layouts";
 import { Button } from "@/components/ui/button";
-import { DashboardProductSection } from "@/features/dashboard/layouts/DashboardProductSection";
+import { DashboardProductSection } from "@/features/dashboard/layouts";
 import { CirclePlus } from "lucide-react";
+import type { Metadata } from "next";
 import Link from "next/link";
 import { CategoryTable } from "../tables";
-import type { Metadata } from "next";
 
 export const CategoryPageMetadata: Metadata = {
   title: "Dashboard | Category",

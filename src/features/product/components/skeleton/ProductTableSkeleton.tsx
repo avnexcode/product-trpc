@@ -25,6 +25,12 @@ export const ProductTableSkeleton = () => {
           <TableHead>
             <TableCellSkeleton />
           </TableHead>
+          <TableHead>
+            <TableCellSkeleton />
+          </TableHead>
+          <TableHead>
+            <TableCellSkeleton />
+          </TableHead>
           <TableHead className="w-[150px]">
             <TableCellSkeleton />
           </TableHead>
@@ -50,6 +56,12 @@ export const ProductTableBodySkeleton = () => {
 export const ProductTableItemSkeleton = () => {
   return (
     <TableRow>
+      <TableCell>
+        <TableCellSkeleton />
+      </TableCell>
+      <TableCell>
+        <TableCellSkeleton />
+      </TableCell>
       <TableCell>
         <TableCellSkeleton />
       </TableCell>
