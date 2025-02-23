@@ -9,7 +9,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { api } from "@/trpc/client";
+import { api } from "@/lib/trpc/client";
 import { renderElements } from "@/utils/render-elements";
 import { SquarePen } from "lucide-react";
 import Link from "next/link";

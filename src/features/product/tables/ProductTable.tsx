@@ -15,7 +15,7 @@ import Link from "next/link";
 import { DeleteProductDialog } from "../components/action";
 import { ProductTableBodySkeleton } from "../components/skeleton";
 import { convertCurrency } from "@/utils";
-import { api } from "@/trpc/client";
+import { api } from "@/lib/trpc/client";
 
 export const ProductTable = () => {
   const {

@@ -1,4 +1,4 @@
-import { TRPCReactProvider } from "@/trpc/client";
+import { TRPCReactProvider } from "@/lib/trpc/client";
 import { ThemeProvider } from "./ThemeProvider";
 
 type ProvidersProps = {

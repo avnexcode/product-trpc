@@ -1,10 +1,11 @@
-import { z } from "zod";
-import { createTRPCRouter, publicProcedure } from "../trpc";
-import { TRPCError } from "@trpc/server";
+import { handleError } from "@/server/filters";
 import {
   createCategoryRequest,
   updateCategoryRequest,
-} from "@/server/validations/category.validation";
+} from "@/server/validations";
+import { TRPCError } from "@trpc/server";
+import { z } from "zod";
+import { createTRPCRouter, publicProcedure } from "../trpc";
 
 export const categoryRouter = createTRPCRouter({
   getAll: publicProcedure.query(async ({ ctx }) => {
@@ -17,13 +18,7 @@ export const categoryRouter = createTRPCRouter({
       });
       return categories;
     } catch (error) {
-      if (error instanceof TRPCError) {
-        throw new TRPCError({
-          code: "INTERNAL_SERVER_ERROR",
-          message: error.message,
-          cause: error,
-        });
-      }
+      handleError(error);
     }
   }),
 
@@ -33,6 +28,9 @@ export const categoryRouter = createTRPCRouter({
       try {
         const category = await ctx.db.category.findUnique({
           where: { id: input.id },
+          select: {
+            name: true,
+          },
         });
         if (!category) {
           throw new TRPCError({
@@ -42,13 +40,7 @@ export const categoryRouter = createTRPCRouter({
         }
         return category;
       } catch (error) {
-        if (error instanceof TRPCError) {
-          throw new TRPCError({
-            code: "INTERNAL_SERVER_ERROR",
-            message: error.message,
-            cause: error,
-          });
-        }
+        handleError(error);
       }
     }),
 
@@ -69,15 +61,13 @@ export const categoryRouter = createTRPCRouter({
 
         await ctx.db.category.create({
           data: input,
+          select: {
+            name: true,
+            created_at: true,
+          },
         });
       } catch (error) {
-        if (error instanceof TRPCError) {
-          throw new TRPCError({
-            code: "INTERNAL_SERVER_ERROR",
-            message: error.message,
-            cause: error,
-          });
-        }
+        handleError(error);
       }
     }),
 
@@ -111,15 +101,13 @@ export const categoryRouter = createTRPCRouter({
         await ctx.db.category.update({
           where: { id: input.id },
           data: { name: input.name },
+          select: {
+            name: true,
+            updated_at: true,
+          },
         });
       } catch (error) {
-        if (error instanceof TRPCError) {
-          throw new TRPCError({
-            code: "INTERNAL_SERVER_ERROR",
-            message: error.message,
-            cause: error,
-          });
-        }
+        handleError(error);
       }
     }),
 
@@ -136,15 +124,12 @@ export const categoryRouter = createTRPCRouter({
             message: `Category with ID : ${input.id} not found`,
           });
         }
-        await ctx.db.category.delete({ where: { id: input.id } });
+        await ctx.db.category.delete({
+          where: { id: input.id },
+          select: { id: true },
+        });
       } catch (error) {
-        if (error instanceof TRPCError) {
-          throw new TRPCError({
-            code: "INTERNAL_SERVER_ERROR",
-            message: error.message,
-            cause: error,
-          });
-        }
+        handleError(error);
       }
     }),
 });

@@ -14,7 +14,7 @@ import {
 } from "@/components/ui/select";
 import { Skeleton } from "@/components/ui/skeleton";
 import { cn } from "@/lib/utils";
-import { api } from "@/trpc/client";
+import { api } from "@/lib/trpc/client";
 import { renderElements } from "@/utils/render-elements";
 import { useEffect, useState } from "react";
 import { useFormContext, type FieldValues, type Path } from "react-hook-form";

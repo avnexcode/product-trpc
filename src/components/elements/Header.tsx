@@ -9,7 +9,7 @@ export const Header = () => {
       <div className="flex items-center gap-5">
         <SidebarTrigger />
         <Link href={"/"}>
-          <Heading size={"h3"}>SLEMEK</Heading>
+          <Heading size={"h3"}>Disorganized</Heading>
         </Link>
       </div>
       <div className="flex items-center gap-5">
