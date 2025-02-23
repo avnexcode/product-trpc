@@ -10,6 +10,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { CategorySelect } from "@/features/category/components/CategorySelect";
 import { useFormContext } from "react-hook-form";
 import type { UpdateProductFormSchema } from "../types";
+import { inputHandle } from "@/utils";
 
 type EditProductFormInnerProps = {
   formId: string;
@@ -56,7 +57,17 @@ export const EditProductFormInner = ({
               Price <span className="text-red-500">*</span>
             </FormLabel>
             <FormControl>
-              <Input placeholder="Input product price" {...field} />
+              <Input
+                placeholder="Input product price"
+                {...field}
+                onChange={(e) => {
+                  inputHandle("onChange", "number", e);
+                  field.onChange(e);
+                }}
+                onPaste={(e) => {
+                  inputHandle("onPaste", "number", e);
+                }}
+              />
             </FormControl>
             <FormMessage />
           </FormItem>
